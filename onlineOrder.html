@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>無標題文件</title>
+<title>N2GO線上點餐</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./css/styles.css">
+<link rel="stylesheet" href="./css/main.css">
 <style>
 body,h1 {font-family: "Montserrat", sans-serif}
 img {margin-bottom: -7px}
@@ -18,20 +20,33 @@ img {margin-bottom: -7px}
 
 <style>
 /*字體*/
-
-
-.header {
-  text-align: center;
-  padding: 32px;
+select{
+    width: 50%;
+    height: 70px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding: 10px;
+    font-size: 36px;
+    font-family: '微軟正黑體','Open Sans', sans-serif;
+    color: #555;
+    background-color: rgb(255, 255, 255);
+    background-image: none;
+    border: 1px solid rgb(41, 18, 18);
+}
+select>option{
+    font-size: 36px;
+    font-family: '微軟正黑體','Open Sans', sans-serif;
+    color: #555;
+    background-color: rgb(247, 247, 247);
+    background-image: none;
+    font-size: 36px;
+    height: 70px;
+    padding: 15px;
+    border: 1px solid rgb(41, 18, 18);
 }
 
-.row {
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
-  -ms-flex-wrap: wrap; /* IE10 */
-  flex-wrap: wrap;
-  padding: 0 4px;
-}
+
 
 /* Create four equal columns that sits next to each other */
 .column {
@@ -39,6 +54,7 @@ img {margin-bottom: -7px}
   flex: 25%;
   max-width: 25%;
   padding: 0 4px;
+	
 }
 
 .column img {
@@ -70,7 +86,7 @@ img {margin-bottom: -7px}
 .column2 img {
   margin-top: 8px;
   vertical-align: middle;
-  width: 100%;
+  width: 50%;
 }
 
 
@@ -138,6 +154,67 @@ img {margin-bottom: -7px}
 
 
 </style>
+<style>
+.header {
+  border: 1px solid red;
+  padding: 15px;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+	align-self: center;
+}
+* {
+  box-sizing: border-box;
+}
+
+
+[class*="col-"] {
+  float: left;
+  padding: 20px;
+  border: 0px solid;
+}
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+.responsive {
+  width: 100%;
+  height: auto;
+}
+</style>
+<style>
+.footer {
+  
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+	height:60px;
+   background-color:#053B4B;
+   color: white;
+   text-align: center;
+}
+.text32
+{
+ font-family: "微軟正黑體",Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+ font-size: 32pt;	
+ font-weight: bold;	
+ color:#0C5EA2;	
+ 
+}
+</style>
 <body>
 <!--儲存html圖片容器-->
 
@@ -145,13 +222,129 @@ img {margin-bottom: -7px}
 <!--放上面段的東西-->
 <header class="w3-center">
 <div style="background-color:#ffffff;">
-<p><a href="https://liff.line.me/1657766696-xdQywqKX/lc-u0uNj?path=%2Fordering">立即點餐(大墩店)</a></p>
-<p>&nbsp;</p>
 
+<img src="./img/drinks1.jpg" style ="width:100%">
+<p>&nbsp;</p>
+<p><span class="text22">請選擇分店：</span>
+<select id="store" onChange="showpos()">
+  <option value="1">N2GO台中大墩店</option>
+  <option value="2">N2GO豐原中正店</option>
+  <option value="3">N2GO台中朝富店</option>
+ <!--20230803新增-->
+  <option value="4">N2GO台中河南店</option>
+ <!--20230803新增結束-->    
+  <option value="5">N2GO台中大智店</option>
+    <option value="6">N2GO頭份店</option>
+</select></p>
+</div>
+<p>&nbsp;</p>
+<p><div id="pos" class="text32">您現在所在的位置是：N2GO台中大墩店</div></p>
+<p>&nbsp;</p><p>&nbsp;</p>
+</header>
+<div class="w3-center">
+<div class="row">
+  <div class="col-6"><img src="img/onlineOrdering.png" class="responsive" onClick="ordering()"></div>
+  <div class="col-6"><img src="img/follow.png" class="responsive" onClick="following()"></div>
+</div>  
+<div class="row">
+  <div class="col-6"><img src="img/history.png" class="responsive" onClick="history()"></div>
+  <div class="col-6"><img src="img/points.png" class="responsive" onClick="points()"></div>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="footer">
+  <div>©2021 by N2GO Drinks</div>
+  <div>本網站屬智鯨未來股份有限公司所有</div>
 
 </div>
-</header>
+<!-- line放這邊 -->
+
 
 </body>
 </html>
-	
+<script>
+/*   
+下列 else if (vStore == "4") 皆是20230803新增河南店所加的程式嗎
+河南店代碼為4
+*/
+	function ordering()
+	{
+		var vStore=document.getElementById("store").value;
+		
+		if(vStore == "1")
+			document.location.href ="https://store.dudooeat.com/order/store/74e7f0db1e0144dc90a9f3326b75d195"
+		else if	(vStore == "2")
+				document.location.href ="https://store.dudooeat.com/order/store/e03943d1736642f28958d3953543651a"
+        else if	(vStore == "3")
+				document.location.href ="https://store.dudooeat.com/order/store/1bff9e83ac8f4f94bb78488b51c1a354"
+         else if (vStore == "4")
+                    document.location.href ="https://store.dudooeat.com/order/store/12b462edba9a43909965032920d846b8"
+			
+		 else if (vStore == "5")
+				 document.location.href ="https://store.dudooeat.com/order/store/c6f2386bebd442b6921e7bfa2f9a8a5f"
+		 else if (vStore == "6")
+				 document.location.href ="https://store.dudooeat.com/order/store/d6d030b334be4efd885ca30e81f29b39";		 
+	}
+	function following()
+	{
+		var vStore=document.getElementById("store").value;
+		
+		if(vStore == "1")
+			document.location.href ="https://liff.line.me/1657766696-xdQywqKX/lc-u0uNj?path=%2Fmember%2Forders%2Fongoing"
+		else if	(vStore == "2")
+				document.location.href ="https://liff.line.me/1657812693-VY9vAqaa/zSKI4YEG?path=%2Fmember%2Forders%2Fongoing"
+		else if	(vStore == "3")
+				document.location.href ="https://liff.line.me/1660664744-obd99lyZ/MHJyq3lZ?path=%2Fmember%2Forders%2Fongoing"
+        else if	(vStore == "4")
+				document.location.href ="https://liff.line.me/2000276175-lrMYnXK4/xa6h_3Mz?path=%2Fmember%2Forders%2Fongoing"
+		  else if	(vStore == "5")
+				document.location.href ="https://liff.line.me/2000906847-Z8LvxKA1/26lL82_0?path=%2Fmember%2Forders%2Fongoing";
+	}
+	function history()
+	{
+		var vStore=document.getElementById("store").value;
+		
+		if(vStore == "1")
+			document.location.href ="https://liff.line.me/1657766696-xdQywqKX/lc-u0uNj?path=%2Fmember%2Forders%2Fhistory"
+		else if	(vStore == "2")
+				document.location.href ="https://liff.line.me/1657812693-VY9vAqaa/zSKI4YEG?path=%2Fmember%2Forders%2Fhistory"
+		else if	(vStore == "3")
+				document.location.href ="https://liff.line.me/1660664744-obd99lyZ/MHJyq3lZ?path=%2Fmember%2Forders%2Fhistory"
+        else if	(vStore == "4")
+				document.location.href ="https://liff.line.me/2000276175-lrMYnXK4/xa6h_3Mz?path=%2Fmember%2Forders%2Fhistory"
+	 else if	(vStore == "5")
+				document.location.href ="https://liff.line.me/2000906847-Z8LvxKA1/26lL82_0?path=%2Fmember%2Forders%2Fhistory";			
+	}
+	function points()
+	{
+		var vStore=document.getElementById("store").value;
+		
+		if(vStore == "1")
+			document.location.href ="https://liff.line.me/1657766696-xdQywqKX/lc-u0uNj?path=%2Fmember%2Fpoints"
+		else if	(vStore == "2")
+				document.location.href ="https://liff.line.me/1657812693-VY9vAqaa/zSKI4YEG?path=%2Fmember%2Fpoints"
+		else if	(vStore == "3")
+				document.location.href ="https://liff.line.me/1660664744-obd99lyZ/MHJyq3lZ?path=%2Fmember%2Fpoints"
+        else if	(vStore == "4")
+				document.location.href ="https://liff.line.me/2000276175-lrMYnXK4/xa6h_3Mz?path=%2Fmember%2Fpoints"
+		 else if	(vStore == "5")
+				document.location.href ="https://liff.line.me/2000906847-Z8LvxKA1/26lL82_0?path=%2Fmember%2Fpoints";
+	}
+	function showpos()
+	{
+		var vStore=document.getElementById("store").value;
+		var vShowPos=document.getElementById("pos");
+		if(vStore == "1")
+			vShowPos.innerHTML="您現在所在的位置是：N2GO台中大墩店"
+		else if(vStore == "2")	
+			vShowPos.innerHTML="您現在所在的位置是：N2GO豐原中正店"
+		else if(vStore == "3")	
+			vShowPos.innerHTML="您現在所在的位置是：N2GO台中朝富店"
+        else if(vStore == "4")	
+			vShowPos.innerHTML="您現在所在的位置是：N2GO台中河南店"    
+		 else if(vStore == "5")	
+			vShowPos.innerHTML="您現在所在的位置是：N2GO台中大智店"    ;	
+			
+	}
+</script>	
